@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>calc-builder</groupId>
+    <artifactId>calc-builder</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>House Building Calculator</name>
+
+    <modules>
+        <module>calcbuilder-config</module>
+        <module>calcbuilder-eureka</module>
+
+        <module>calcbuilder-basement</module>
+        <module>calcbuilder-walls</module>
+        <module>calcbuilder-roof</module>
+        <module>calcbuilder-house</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mock.environment>default</mock.environment>
+
+        <spring.boot.version>2.0.5.RELEASE</spring.boot.version>
+        <jodd.http.version>3.8.6</jodd.http.version>
+    </properties>
+
+</project>

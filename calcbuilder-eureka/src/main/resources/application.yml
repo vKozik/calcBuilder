@@ -1,0 +1,11 @@
+
+spring:
+  application:
+    name: calc-builder-eureka
+  cloud:
+    config:
+      name: calc-builder-eureka
+      uri: http://localhost:8888
+
+
+

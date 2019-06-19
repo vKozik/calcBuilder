@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    config:
+      name: calc-builder-house
+      uri: http://localhost:8888
