@@ -1,0 +1,1 @@
+web: java -jar calcbuilder-eureka/target/calc-builder-eureka-1.0-SNAPSHOT.jar
