@@ -54,4 +54,5 @@ java -jar calcbuilder-roof/target/calc-builder-roof-1.0-SNAPSHOT.jar
 java -jar calcbuilder-walls/target/calc-builder-walls-1.0-SNAPSHOT.jar
 ```
 
-
+### Request examples
+http://localhost:8181/calculate?length=15&width=10&numberOfLevels=2&roomHeight=3
