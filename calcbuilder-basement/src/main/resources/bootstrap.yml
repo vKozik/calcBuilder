@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    config:
+      name: calc-builder-basement
+      uri: http://localhost:8888
