@@ -38,7 +38,6 @@ public class   HouseCalcImpl implements HouseCalc {
         return new BudgetHouse("There are problems with some services. Please try later. "
                 + exception.getMessage());
     }
-
     public BudgetHouse calculateForUser(String userId, String password) {
         BudgetHouse result = calculate(10.0, 15.0, 2, 3.0);
         log.info("calculate for user {} with password: {} result: {}", userId, password, result.getResult());
