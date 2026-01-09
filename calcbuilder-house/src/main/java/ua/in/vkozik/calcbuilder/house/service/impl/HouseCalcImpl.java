@@ -40,7 +40,10 @@ public class   HouseCalcImpl implements HouseCalc {
     }
 
     public BudgetHouse calculateForUser(String userId, String password) {
-        log.info("calculate for user {} with password: {}", userId, password);
+        BudgetHouse result = calculate(10.0, 15.0, 2, 3.0);
+        log.info("calculate for user {} with password: {} result: {}", userId, password, result.getResult());
+
+        return result;
     }
 
     private Double calculateBasement(double square, int numberOfLevels) {
