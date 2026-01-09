@@ -1,16 +1,13 @@
 package ua.in.vkozik.calcbuilder.house.service.impl;
-
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import ua.in.vkozik.calcbuilder.house.clients.BasementClient;
 import ua.in.vkozik.calcbuilder.house.clients.RoofClient;
 import ua.in.vkozik.calcbuilder.house.clients.WallClient;
 import ua.in.vkozik.calcbuilder.house.data.BudgetHouse;
 import ua.in.vkozik.calcbuilder.house.service.HouseCalc;
-
 @Slf4j
 @Service
 public class  HouseCalcImpl implements HouseCalc {
