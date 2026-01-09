@@ -13,40 +13,30 @@ import ua.in.vkozik.calcbuilder.house.service.HouseCalc;
 public class  HouseCalcImpl implements HouseCalc {
     @Autowired
     BasementClient basementClient;
-
     @Autowired
     RoofClient roofClient;
-
     @Autowired
     WallClient wallClient;
-
     @Override
     @HystrixCommand(fallbackMethod = "calculateFallback")
     public BudgetHouse calculate(double length, double width, int numberOfLevels, double roomHeight) {
         Double basementCost = calculateBasement(length * width, numberOfLevels);
         Double wallsCost = calculateWalls(length, width, numberOfLevels, roomHeight);
         Double roofCost = calculateRoof(length, width);
-
         return new BudgetHouse(basementCost, wallsCost, roofCost);
     }
-
-    public BudgetHouse calculateFallback(double length, double width, int numberOfLevels, double roomHeight,
-                                         Throwable exception) {
+    public BudgetHouse calculateFallback(double length, double width, int numberOfLevels, double roomHeight, Throwable exception) {
         return new BudgetHouse("There are problems with some services. Please try later. "
                 + exception.getMessage());
     }
-
     public BudgetHouse calculateForUser(String userId, String password) {
         log.info("calculate for user {} with password: {}", userId, password);
     }
-
     private Double calculateBasement(double square, int numberOfLevels) {
         double height = 0.6;
         double depth = 0.5 / numberOfLevels;
-
         return basementClient.calculate(square, height, depth);
     }
-
     private Double calculateWalls(double length, double width, int numberOfLevels, double roomHeight) {
         Double wallCost = 0.0;
         for (int i = 0; i < numberOfLevels; i++) {
@@ -62,12 +52,9 @@ public class  HouseCalcImpl implements HouseCalc {
             }
             roomHeight += 0.3;
         }
-
         return wallClient.calculate(length, width, numberOfLevels, roomHeight);
     }
-
     private Double calculateRoof(double length, double width) {
-
         return roofClient.calculate(length, width);
     }
 }
