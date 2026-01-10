@@ -1,6 +1,7 @@
 package ua.in.vkozik.calcbuilder.house.service.impl;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +11,9 @@ import ua.in.vkozik.calcbuilder.house.clients.WallClient;
 import ua.in.vkozik.calcbuilder.house.data.BudgetHouse;
 import ua.in.vkozik.calcbuilder.house.service.HouseCalc;
 
+@Slf4j
 @Service
-public class HouseCalcImpl implements HouseCalc {
+public class   HouseCalcImpl implements HouseCalc {
     @Autowired
     BasementClient basementClient;
 
@@ -37,14 +39,35 @@ public class HouseCalcImpl implements HouseCalc {
                 + exception.getMessage());
     }
 
+    public BudgetHouse calculateForUser(String userId, String password) {
+        BudgetHouse result = calculate(10.0, 15.0, 2, 3.0);
+        log.info("calculate for user {} with password: {} result: {}", userId, password, result.getResult());
+
+        return result;
+    }
+
     private Double calculateBasement(double square, int numberOfLevels) {
         double height = 0.6;
-        double depth = 0.5 * numberOfLevels;
+        double depth = 0.5 / numberOfLevels;
 
         return basementClient.calculate(square, height, depth);
     }
 
     private Double calculateWalls(double length, double width, int numberOfLevels, double roomHeight) {
+        Double wallCost = 0.0;
+        for (int i = 0; i < numberOfLevels; i++) {
+            for (int j = 0; j < i; j++) {
+                if (length > width) {
+                    wallCost += 0.1 * length;
+                } else if (width >= length) {
+                    wallCost += 0.1 * width;
+                    for (int k = 0; k < j; k++) {
+                        wallCost += 0.05 * width;
+                    }
+                }
+            }
+            roomHeight += 0.3;
+        }
 
         return wallClient.calculate(length, width, numberOfLevels, roomHeight);
     }
