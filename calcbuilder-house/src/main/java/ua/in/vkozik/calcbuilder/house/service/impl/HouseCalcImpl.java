@@ -38,6 +38,7 @@ public class   HouseCalcImpl implements HouseCalc {
         return new BudgetHouse("There are problems with some services. Please try later. "
                 + exception.getMessage());
     }
+
     public BudgetHouse calculateForUser(String userId, String password) {
         BudgetHouse result = calculate(10.0, 15.0, 2, 3.0);
         log.info("calculate for user {} with password: {} result: {}", userId, password, result.getResult());
@@ -56,14 +57,14 @@ public class   HouseCalcImpl implements HouseCalc {
         Double wallCost = 0.0;
         for (int i = 0; i < numberOfLevels; i++) {
             for (int j = 0; j < i; j++) {
-               if (length > width) {
-                   wallCost += 0.1 * length;
-               } else if (width >= length) {
-                   wallCost += 0.1 * width;
-                   for (int k = 0; k < j; k++) {
-                       wallCost += 0.05 * width;
-                   }
-               }
+                if (length > width) {
+                    wallCost += 0.1 * length;
+                } else if (width >= length) {
+                    wallCost += 0.1 * width;
+                    for (int k = 0; k < j; k++) {
+                        wallCost += 0.05 * width;
+                    }
+                }
             }
             roomHeight += 0.3;
         }
